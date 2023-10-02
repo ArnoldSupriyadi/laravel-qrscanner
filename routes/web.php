@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AbsenController;
+use App\Models\Absen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'absen' => Absen::all()
+    ]);
 });
+
+Route::post('/store', [AbsenController::class, 'store'])->name('store');
