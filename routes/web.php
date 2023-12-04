@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', [
-        'absen' => Absen::all()
-    ]);
-});
+Route::get('/', [AbsenController::class, 'index'])->name('index');
 
 Route::post('/store', [AbsenController::class, 'store'])->name('store');
+
+Route::get('/checkin', [AbsenController::class, 'checkin'])->name('absenmasuk');

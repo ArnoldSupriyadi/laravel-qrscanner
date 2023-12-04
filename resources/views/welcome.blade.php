@@ -33,13 +33,13 @@
             {{-- Form --}}
             <form action="{{ route('store') }}" method="post" id="form">
                 @csrf
-                <input type="hidden" name="id_siswa" id="id_siswa">
-                {{-- <input type="hidden" name="lokasi" id="lokasi"> --}}
+                {{-- <input type="hidden" name="id_siswa" id="id_siswa"> --}}
+                <input type="text" name="lokasi" id="lokasi">
             </form>
         </div>
         {{-- scanner --}}
 
-        <div class="table-responsive mt-3">
+        {{-- <div class="table-responsive mt-3">
             <table class="table table-bordered table-hover">
                 <tr>
                     <th>Nama</th>
@@ -47,12 +47,13 @@
                 </tr>
                 @foreach ($absen as $item)
                     <tr>
-                        <td>{{ $item->siswa->nama }}</td>
+                        <td>{{ $item->id_siswa }}</td>
+                        <td>{{ $item->lokasi }}</td>
                         <td>{{ $item->tanggal }}</td>
                     </tr>
                 @endforeach
             </table>
-        </div>
+        </div> --}}
     </div>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 
@@ -72,7 +73,7 @@
         });
 
         scanner.addListener('scan', function(c){
-            document.getElementById('id_siswa').value = c;
+            document.getElementById('lokasi').value = c;
             document.getElementById('form').submit();
         });
 

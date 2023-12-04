@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 
 class AbsenController extends Controller
 {
+    public function index()
+    {
+        $absens = Absen::all();
+
+        return view ('dashboard', compact('absens'));
+    }
+
     public function store(Request $request)
     {
         //cek data
         $cek = Absen::where([
-            'id_siswa' => $request->id_siswa,
-            'lokasi' => 'head office',
+            'id_siswa' => '100359',
+            'lokasi' => $request->lokasi,
             'tanggal' => date('Y-m-d')
         ])->first();
 
@@ -21,12 +28,17 @@ class AbsenController extends Controller
         }
     
         Absen::create([
-            'id_siswa' => $request->id_siswa,
-            'tanggal' => date('Y-m-d'),
-            'lokasi' => 'head office'
+            'id_siswa' => '100359',
+            'lokasi' => $request->lokasi,
+            'tanggal' => date('Y-m-d')
         ]);
     
         return redirect('/')->with('success', 'Silahkan Masuk');
+    }
+
+    public function checkin()
+    {
+        return view('welcome');
     }
 
     
